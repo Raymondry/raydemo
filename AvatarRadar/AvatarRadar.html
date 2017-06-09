@@ -1,0 +1,116 @@
+﻿<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+<style>
+body{text-align:center;overflow-y:hidden; }
+</style>
+  <script src="jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+  <!--
+	$(document).ready(function($){
+		var widthA=window.screen.availWidth-100;
+		var heightA=window.screen.availHeight -100;
+		$("body").css("width",widthA);
+		$("body").css("height",heightA+100);
+		
+		var qCount=widthA/150;
+		var iqCount=parseInt(qCount);
+		for(var i=0;i<iqCount;i++){
+			if(i!=iqCount-1){
+				$("body").append('<div style="width: '+(widthA-(i)*150)+'px;height: '+(widthA-(i)*150)+'px;border-radius: '+(widthA-(i)*150)/2+'px;border: solid rgb(223, 223, 223) 1px;margin-left:'+(widthA-(widthA-(i)*150))/2+'px;margin-top:'+(heightA-(widthA-(i)*150))/2+'px;position: absolute;"></div>');
+			}else{
+				$("body").append('<div style="width: 140px;height: 140px;border-radius: 70px;margin-left:'+(widthA-140)/2+'px;margin-top:'+(heightA-140)/2+'px;position: absolute;background: url(my.png);background-size: 100% 100%;"></div>');
+			}
+		}
+		
+
+		for(var j=iqCount-2;j>=0;j--){
+			var r = (widthA-(j)*150)/2 ;
+			var lt = (widthA-(widthA-(j)*150))/2;
+			var rt = (heightA-(widthA-(j)*150))/2;
+
+			var jdArr=new Array();
+
+			for(var k=0;k<iqCount -j;k++){
+
+			var manJD = Math.random()*360;
+
+			if(checkJD(jdArr,manJD)){
+				jdArr.push(manJD);
+			}else{
+				break;
+			}
+			
+			var mleft = 0;
+			var mtop = 0;
+
+			if(manJD >0 && manJD < 90){
+				mleft = lt + r + r * (Math.sin((2*Math.PI / 360)*manJD)) - 40;
+				mtop = rt + r - r * (Math.cos((2*Math.PI / 360)*manJD)) - 40;
+			}
+
+			if(manJD >90 && manJD < 180){
+				manJD = 180 - manJD ;
+				mleft = lt + r + r * (Math.sin((2*Math.PI / 360)*manJD)) - 40;
+				mtop = rt + r + r * (Math.cos((2*Math.PI / 360)*manJD)) - 40;
+			}
+
+			if(manJD >180 && manJD < 270){
+				manJD = manJD - 180;
+				mleft = lt + r - r * (Math.sin((2*Math.PI / 360)*manJD)) - 40;
+				mtop = rt + r + r * (Math.cos((2*Math.PI / 360)*manJD)) - 40;
+			}
+
+			if(manJD >270 && manJD < 360){
+				manJD = 360 - manJD ;
+				mleft = lt + r - r * (Math.sin((2*Math.PI / 360)*manJD)) - 40;
+				mtop = rt + r - r * (Math.cos((2*Math.PI / 360)*manJD)) - 40;
+			}
+			
+			if(!checkOut(mleft,mtop,widthA,heightA)){
+				break;
+			}
+			
+			var rmzs=Math.round(Math.random());
+			var txsrc='';
+			if(rmzs==0){
+				txsrc='nv.png';
+			}else if(rmzs==1){
+				txsrc='nan.png';
+			}
+			$("body").append('<div style="width: 80px;height: 80px;border-radius: 40px;margin-left:'+mleft+'px;margin-top:'+mtop+'px;position: absolute;background: url('+txsrc+');background-size: 100% 100%;"></div>');
+			}
+		}
+		
+	});
+
+	function checkOut(marginleft,margintop,width,height){
+		if((marginleft+80)>width || (margintop+80)>height){
+			return false;
+		}
+		return true;
+	}
+
+	function checkJD(arr,jd){
+		var flag=true;
+		for(var i=0;i<arr.length;i++){
+			if(Math.abs(arr[i]-jd) < 30 ){
+					flag= false;
+					break;
+			}
+		}
+		return flag;
+	}
+  //-->
+  </script>  
+ </head>
+ <body onmousewheel="return false;" style="background: url(04.jpg);background-size: 100% 100%;-webkit-background-size: 100% 100%;margin-left:auto;margin-right:auto;">
+ 
+ </body>
+</html>
